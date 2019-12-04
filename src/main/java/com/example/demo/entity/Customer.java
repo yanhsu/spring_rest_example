@@ -17,7 +17,7 @@ public class Customer {
 
     @NotNull
     @Column(name = "NAME")
-    private  String Name;
+    private  String Name ;
 
     @Column(name = "AGE")
     private  Integer Age;
