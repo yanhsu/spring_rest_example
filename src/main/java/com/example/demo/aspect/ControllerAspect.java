@@ -4,13 +4,11 @@ import com.example.demo.model.ResponseModel;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Component
 @Aspect
@@ -20,7 +18,6 @@ public class ControllerAspect {
     }
 
     @Around("controllerRun()")
-
     public ResponseEntity controllerRunProcess(ProceedingJoinPoint pjp) throws Throwable {
         // 取得AOP參數
         Object[] args = pjp.getArgs();

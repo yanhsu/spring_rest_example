@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,15 +20,15 @@ public class CustomerController {
     private CustomerRepository customerRepository;
 
     @ResponseBody
-    @PostMapping(path = "/customer", produces = "application/json;charset=UTF-8")
-    public Object addCustomer(@RequestBody Customer cus) {
+    @PostMapping(path = "/customers", produces = "application/json;charset=UTF-8")
+    public Object addCustomer(@Valid  @RequestBody Customer cus) {
         Customer result = customerRepository.save(cus);
 
         return result;
     }
 
     @ResponseBody
-    @DeleteMapping(path = "/customer/{id}", produces = "application/json;charset=UTF-8")
+    @DeleteMapping(path = "/customers/{id}", produces = "application/json;charset=UTF-8")
     public ResponseEntity<Object> deleteCustomer(@PathVariable(name = "id") Integer Id) {
         customerRepository.deleteById(Id);
 
@@ -35,7 +36,7 @@ public class CustomerController {
     }
 
     @ResponseBody
-    @GetMapping(path = "/customer", produces = "application/json;charset=UTF-8")
+    @GetMapping(path = "/customers", produces = "application/json;charset=UTF-8")
     public Object getAllCustomer() {
         List<Customer> result = customerRepository.findAll();
 
@@ -43,7 +44,7 @@ public class CustomerController {
     }
 
     @ResponseBody
-    @GetMapping(path = "/customer/{id}", produces = "application/json;charset=UTF-8")
+    @GetMapping(path = "/customers/{id}", produces = "application/json;charset=UTF-8")
     public Object getCustomer(@PathVariable(name = "id") Integer Id) {
         Optional<Customer> result = customerRepository.findById(Id);
 
@@ -51,7 +52,7 @@ public class CustomerController {
     }
 
     @ResponseBody
-    @PutMapping (path = "/customer/{id}", produces = "application/json;charset=UTF-8")
+    @PutMapping (path = "/customers/{id}", produces = "application/json;charset=UTF-8")
     public Object updateCustomer(@PathVariable(name = "id") Integer Id,@RequestBody Customer obj) {
         Optional<Customer> result = customerRepository.findById(Id);
         if(result != null) {
@@ -64,7 +65,7 @@ public class CustomerController {
     }
 
     @ResponseBody
-    @PatchMapping(path = "/customer/{id}", produces = "application/json;charset=UTF-8")
+    @PatchMapping(path = "/customers/{id}", produces = "application/json;charset=UTF-8")
     public Object patchCustomer(@PathVariable(name = "id") Integer Id,@RequestBody Customer obj) {
         Optional<Customer> result = customerRepository.findById(Id);
         if(result != null) {

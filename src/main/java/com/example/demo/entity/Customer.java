@@ -15,7 +15,7 @@ public class Customer {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private  int Id;
 
-    @NotNull
+    @NotNull(message = "姓名不可為空")
     @Column(name = "NAME")
     private  String Name ;
 
